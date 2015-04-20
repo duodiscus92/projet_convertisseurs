@@ -70,7 +70,7 @@ static DICTIONNAIRE dico[]={
 "Bourse au BPP FFVV","740103","740103",
 "Bourse au lacher FFVV","740104","740104",
 "Bourse aux 1000 km FFVV","740105","740105",
-"Bourse au mérite FFVV","740106","740106",
+"Bourse au merite FFVV","740106","740106",
 "Bourse CDVP","740102","740102",
 "Bourse CFVP","740100","740100",
 "Vol formation pilote remorqueur KL","706204","706204",
@@ -91,9 +91,9 @@ static DICTIONNAIRE dico[]={
 "Gratification exceptionnelle 8JF","628104","628104",
 "Contribution exceptionnelle du club","670000","670000",
 "Achat d'un badge","628102","628102",
-"Stage découverte 6 jours assur* compris 6 vols 4h à 5h","706309","706309",
-"Stage SIPP 6 vols 4h à 5h avec Licence assurance et remorqués","706304","706304",
-"Stage SIPP 6 vols 4h à 5h avec LA et remorqués","706304","706304",
+"Stage decouverte 6 jours assur* compris 6 vols 4h à 5h","706309","706309",
+"Stage SIPP 6 vols 4h a 5h avec Licence assurance et remorques","706304","706304",
+"Stage SIPP 6 vols 4h a 5h avec LA et remorques","706304","706304",
 };
 
 /* obtention code du plan comptable */

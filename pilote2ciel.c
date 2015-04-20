@@ -9,6 +9,7 @@
 //static char ligne[200];
 
 typedef struct {
+	char numecr[5];
 	char numpil[5];
 	char nompil[80];
 	char date [15];
@@ -111,10 +112,15 @@ int getcode(char *typeoper, char *comptadebit, char *comptacredit)
 }
 
 /* separation des champs */
-void explode(char *buffer, char *numpil, char *nompil, char *date, char *typeoper, char *credit, char *debit)
+void explode(char *buffer, char *numecr, char *numpil, char *nompil, char *date, char *typeoper, char *credit, char *debit)
 {
 	char *p=buffer;
 	char *s;
+
+	s= numecr;
+	while (*p != ';') *s++ = *p++;
+	*s=0;
+	p++;
 
 	s= numpil;
 	while (*p != ';') *s++ = *p++;
@@ -196,7 +202,7 @@ int main(int argc, char *argv[])
 			break;
 		linenumber++;
 		/* Separation des champs */
-		explode(buffer, (r.numpil), (r.nompil), (r.date), (r.typeoper), (r.credit), (r.debit));
+		explode(buffer, (r.numecr), (r.numpil), (r.nompil), (r.date), (r.typeoper), (r.credit), (r.debit));
 		/* Remplacer les tirets par des underscore dans la chaîne nompil et les munuscules par des majuscules*/
 		p = r.nompil;
 		while(*p){

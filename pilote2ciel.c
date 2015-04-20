@@ -91,7 +91,7 @@ static DICTIONNAIRE dico[]={
 "Gratification exceptionnelle 8JF","628104","628104",
 "Contribution exceptionnelle du club","670000","670000",
 "Achat d'un badge","628102","628102",
-"Stage decouverte 6 jours assur* compris 6 vols 4h a 5h","706309","706309",
+"Stage decouverte 6 jours assur* compris 6 vols 4h a 5h ","706309","706309",
 "Stage SIPP 6 vols 4h a 5h avec Licence assurance et remorques","706304","706304",
 "Stage SIPP 6 vols 4h a 5h avec LA et remorques","706304","706304",
 };

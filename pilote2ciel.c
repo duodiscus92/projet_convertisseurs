@@ -90,7 +90,10 @@ static DICTIONNAIRE dico[]={
 "Upgrade 150H a 200H","706306","706306",
 "Gratification exceptionnelle 8JF","628104","628104",
 "Contribution exceptionnelle du club","670000","670000",
-"Achat d'un badge","628102","628102"
+"Achat d'un badge","628102","628102",
+"Stage découverte 6 jours assur* compris 6 vols 4h à 5h","706309","706309",
+"Stage SIPP 6 vols 4h à 5h avec Licence assurance et remorqués","706304","706304",
+"Stage SIPP 6 vols 4h à 5h avec LA et remorqués","706304","706304",
 };
 
 /* obtention code du plan comptable */

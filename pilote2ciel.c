@@ -92,8 +92,10 @@ static DICTIONNAIRE dico[]={
 "Contribution exceptionnelle du club","670000","670000",
 "Achat d'un badge","628102","628102",
 "Stage decouverte 6 jours assur compris 6 vols 4h a 5h","706309","706309",
+"Stage decouverte 6 jours", "706309", "706309",
 "Stage SIPP 6 vols 4h a 5h avec Licence assurance et remorques","706304","706304",
 "Stage SIPP 6 vols 4h a 5h avec LA et remorques","706304","706304",
+"Stage SIPP", "706304","706304",
 };
 
 /* obtention code du plan comptable */
@@ -183,18 +185,18 @@ int main(int argc, char *argv[])
 		return -1;
 	}
 
-	/* ouvertur fichier log en Ècriture */
+	/* ouvertur fichier log en √©criture */
 	strcpy(logname, argv[2]);
 	strcpy(&logname[strlen(logname)-4], ".txt");
 	if((flog = fopen(logname, "w")) == NULL){
 		printf("Impossible creer fichier log %s\n", logname);
 		return -1;
 	}
-	fprintf(flog,"Fichier d'entrÈe:%s Fichier de sortie:%s\r\n", argv[1], argv[2]);
+	fprintf(flog,"Fichier d'entr√©e:%s Fichier de sortie:%s\r\n", argv[1], argv[2]);
 	time(&currenttime);
 	fprintf(flog, "Date et heure:%s\r\n",  ctime(&currenttime));
 /*----------------------------------------------------------------*/
-	/* saut ligne d'entÍte */
+	/* saut ligne d'ent√™te */
 	if(!feof(fexport)){
 		 fgets(buffer, 400, fexport);
 		 linenumber=1;
@@ -206,7 +208,7 @@ int main(int argc, char *argv[])
 		linenumber++;
 		/* Separation des champs */
 		explode(buffer, (r.numecr), (r.numpil), (r.nompil), (r.date), (r.typeoper), (r.credit), (r.debit));
-		/* Remplacer les tirets par des underscore dans la chaÓne nompil et les munuscules par des majuscules*/
+		/* Remplacer les tirets par des underscore dans la cha√Æne nompil et les munuscules par des majuscules*/
 		p = r.nompil;
 		while(*p){
 			if(*p=='-')
@@ -214,7 +216,7 @@ int main(int argc, char *argv[])
 			*p = toupper(*p);
 			p++;
 		}
-		/* Remplacer les virgules par des points dÈcimaux dans les chaines credit et debit */
+		/* Remplacer les virgules par des points d√©cimaux dans les chaines credit et debit */
 		p = r.credit;
 		while(*p){
 			if(*p==',')
@@ -229,28 +231,28 @@ int main(int argc, char *argv[])
 		}
 
 #if 1
-		/* Remplacer les caracteres accentuÈs par l'Èquivalent normal dans la chaÓne nompil */
+		/* Remplacer les caracteres accentu√©s par l'√©quivalent normal dans la cha√Æne nompil */
 		/* non ca ne va pas : a retravailler */
 		p = r.nompil;
 		while(*p){
-			if(*p =='©')
-				*p= '…';
-			if(*p =='È')
-				*p= '…';
-			else if (*p =='Ë')
-				*p = '»';
-			else if (*p=='Î')
-				*p = 'À';
-			else if (*p =='˘')
-				*p= 'Ÿ';
-			else if (*p =='‡')
-				*p='¿';
-			else if (*p =='ß')
-				*p= '«';
-			else if (*p =='Á')
-				*p= '«';
-			else if (*p == 'Ô')
-				*p= 'œ';
+			if(*p =='¬©')
+				*p= '√â';
+			if(*p =='√©')
+				*p= '√â';
+			else if (*p =='√®')
+				*p = '√à';
+			else if (*p=='√´')
+				*p = '√ã';
+			else if (*p =='√π')
+				*p= '√ô';
+			else if (*p =='√†')
+				*p='√Ä';
+			else if (*p =='¬ß')
+				*p= '√á';
+			else if (*p =='√ß')
+				*p= '√á';
+			else if (*p == '√Ø')
+				*p= '√è';
 			p++;
 		}
 #endif
@@ -274,7 +276,7 @@ int main(int argc, char *argv[])
 			strcpy(comptacredit, "410XXX");
 			/*continue;*/
 		}
-		/* suppression des lignes avec credit et  dÈbit nul */
+		/* suppression des lignes avec credit et  d√©bit nul */
 		debit=atof(r.debit);
 		credit=atof(r.credit);
 		if(debit == credit){
@@ -283,7 +285,7 @@ int main(int argc, char *argv[])
 				lineignore++;
 				continue;
 		}
-		/* suppression des lignes de report annÈe antÈrieure et avance sur vol */
+		/* suppression des lignes de report ann√©e ant√©rieure et avance sur vol */
 		/* Obtention code plan comptable */
 		if(!strcmp(comptadebit,"0")) {
 			/*fprintf(flog,"Attention: Ligne %5d ignoree: %s  = %8.2f (%s)\r\n", linenumber, r.typeoper, credit ? credit : -debit, r.nompil);*/
@@ -292,8 +294,8 @@ int main(int argc, char *argv[])
 		}
 
 /*-----------------------------------------------------------------*/
-/* <code journal>;<N∞compte>;<date>;<libellÈ compte>;<libellÈ>;<crÈdit> |;<dÈbit> */
-/* test si c'est une opÈration dÈbitrice ou creditrice du compte pilote */
+/* <code journal>;<N¬∞compte>;<date>;<libell√© compte>;<libell√©>;<cr√©dit> |;<d√©bit> */
+/* test si c'est une op√©ration d√©bitrice ou creditrice du compte pilote */
 		if(debit == 0 && credit !=0){
 			/* operation creditrice */
 			fprintf(fimport,"PI;%s;%s;%s;%s %s;%8.2f;;ANALYTIQUE\r\n",
@@ -302,7 +304,7 @@ int main(int argc, char *argv[])
 					atoi(r.numpil), r.date, r.nompil, r.typeoper, credit);
 		}
 		else if (credit ==0 && debit !=0){
-			/* operation dÈbitrice */
+			/* operation d√©bitrice */
 			fprintf(fimport, "PI;419%03d;%s;%s;%s;%8.2f;;ANALYTIQUE\r\n",
 					atoi(r.numpil), r.date, r.nompil, r.typeoper, debit);
 			fprintf(fimport,"PI;%s;%s;%s;%s %s;;%8.2f;ANALYTIQUE\r\n",
@@ -320,7 +322,7 @@ int main(int argc, char *argv[])
 					atoi(r.numpil), r.date, r.nompil, r.typeoper, credit-debit);
 				fprintf(fimport,"PI;%s;%s;%s;%s %s;;%8.2f;ANALYTIQUE\r\n",
 					comptadebit, r.date, r.typeoper, r.nompil, r.typeoper, credit-debit);
-				fprintf(flog,"Attention: Ligne %5d: credit=%8.2f debit=%8.2f. La somme %8.2f a ÈtÈ inscrite au credit du compte %s\r\n",
+				fprintf(flog,"Attention: Ligne %5d: credit=%8.2f debit=%8.2f. La somme %8.2f a √©t√© inscrite au credit du compte %s\r\n",
 					linenumber, credit, debit, credit-debit, r.nompil);
 			}
 			else {
@@ -329,16 +331,16 @@ int main(int argc, char *argv[])
 					comptacredit, r.date, r.typeoper, r.nompil, r.typeoper, debit-credit);
 			fprintf(fimport, "PI;419%03d;%s;%s;%s;;%8.2f;ANALYTIQUE\r\n",
 					atoi(r.numpil), r.date, r.nompil, r.typeoper, debit-credit);
-			fprintf(flog,"Attention: Ligne %5d: credit=%8.2f debit=%8.2f. La somme %8.2f a ÈtÈ inscrite au debit du compte %s\r\n",
+			fprintf(flog,"Attention: Ligne %5d: credit=%8.2f debit=%8.2f. La somme %8.2f a √©t√© inscrite au debit du compte %s\r\n",
 					linenumber, credit, debit, debit-credit, r.nompil);
 			}
 			linewarning++;
 		}
 
 	}
-	fprintf(flog, "\r\nFin: %5d lignes ont ÈtÈ traitÈes\r\n", linenumber);
-	fprintf(flog, "Nombre de lignes ignorÈes : %5d\r\n", lineignore);
-	fprintf(flog, "Nombre de lignes prises en compte mais ‡ revoir : %5d\r\n", linewarning);
+	fprintf(flog, "\r\nFin: %5d lignes ont √©t√© trait√©es\r\n", linenumber);
+	fprintf(flog, "Nombre de lignes ignor√©es : %5d\r\n", lineignore);
+	fprintf(flog, "Nombre de lignes prises en compte mais √† revoir : %5d\r\n", linewarning);
 	fclose(flog);
 	fclose (fimport);
 	fclose(fexport);
